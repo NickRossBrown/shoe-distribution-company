@@ -11,6 +11,14 @@
 
 Shoes will belong to many brands and a brand can belong to shoes (many to many).
 
+Webpage's Schema
+ my initial schema setup was
+<img height="300" src="public/design/schema.png">
+
+I changed my design to
+
+<img height="300" src="public/design/schema2.png">
+
 ## Specifications
 * _1 view list of shoes
   - _Example Input: _

@@ -12,3 +12,12 @@ end
 post ("/") do
   erb(:index)
 end
+
+get ("/stores") do
+
+  erb(:stores)
+end
+get ("/brands") do
+
+  erb(:brands)
+end

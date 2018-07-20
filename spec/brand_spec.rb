@@ -5,7 +5,7 @@ describe(Brand) do
   describe('brand.name and brand.price') do
     it('will create a new brand with a name and price') do
       brand = Brand.create({:name => "Slippers", :price => 35})
-      expect(Brand.all).to(eq([brand]))
+      expect([brand.name,brand.price]).to(eq(["Slippers",35]))
     end
   end
 end

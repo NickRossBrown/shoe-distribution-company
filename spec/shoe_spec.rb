@@ -4,9 +4,8 @@ describe(Shoe) do
 
   describe('shoe.name') do
     it('will create a new brand with a name and price') do
-      binding.pry
-      shoe = Shoe.create({:name => "Slippers"})
-      expect(Shoe.all).to(eq([shoe]))
+      shoe = Shoe.create({:name => "Slipper"})
+      expect([shoe.name]).to(eq(["Slipper"]))
     end
   end
 end

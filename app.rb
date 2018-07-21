@@ -14,12 +14,24 @@ post ("/") do
 end
 
 get ("/stores") do
-
+  @stores = []
   erb(:stores)
 end
 
 get ("/brands") do
   @brands=Brand.all
+  @shoes=Shoe.all
+  erb(:brands)
+end
+patch ("/brands") do
+  binding.pry
+  @brands=Brand.all
+  @shoes=Shoe.all
+  erb(:brands)
+end
+get ("/brands/:id") do
+  @brands=Brand.all
+  @shoes=Shoe.all
   erb(:brands)
 end
 
@@ -28,6 +40,7 @@ post("/brands") do
   brand_price = params.fetch("brandPrice")
   Brand.create({:name => new_brand, :price => brand_price})
   @brands=Brand.all
+  @shoes=Shoe.all
   erb(:brands)
 end
 

@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2018_07_20_222746) do
   create_table "brands_shoes", force: :cascade do |t|
     t.integer "shoe_id"
     t.integer "brand_id"
-    t.integer "brand_price"
   end
 
   create_table "shoes", force: :cascade do |t|

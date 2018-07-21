@@ -9,4 +9,39 @@
     <button  type="submit" class="btn btn-info">Add A Store </button>
   </form>
 
+  <form class="container form-group button" action="/stores/update" method="update" name="store">
+  <select id="store_update" name="store_update">
+   <%if @stores != []%>
+    <% @stores.each do |store| %>
+     <option value = "<%= store.id %>" > <%= store.name %> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no store yet</option>
+     <% end %>
+   </select>
+
+   <label id="renameStore" name="renameStore" type = "text">Rename store</label>
+   <input type="text" name="renameStore">
+
+  <button type="submit" class="btn btn-info"name="button">Update A store</button>
+</form>
+<br>
+<br>
+
+<form class="container form-group button" action="/stores/delete" method="delete" name="store">
+  <select id="store_delete" name="store_delete">
+   <%if @store != []%>
+    <% @stores.each do |store| %>
+     <option value = "<%= store.id %>" > <%= store.name %> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no stores entered  yet</option>
+     <% end %>
+   </select>
+  <button  type="submit" class="btn btn-info"name="button">Delete A store</button>
+</form>
+
+
+
+
 </div>

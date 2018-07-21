@@ -4,7 +4,7 @@
 
   <%if @brands != []%>
     <% @brands.each do |brand| %>
-      <p><%=brand.name%>----<%=brand.price%></p>
+      <p><a href="/brands/<%=brand.id %>"><%=brand.name%>----<%=brand.price%></a></p>
         <% end %>
     <% else %>
       <h2>no entered brands yet</h2>
@@ -14,12 +14,36 @@
   <form class="container form-group button" action="/brands" method="post">
     <label for="brandName">Enter a Brand</label>
     <input type="text" name="brandName" id="brandName">
-
     <label for="brandPrice">Enter its Price</label>
     <input type="int" name="brandPrice" id="brandPrice">
-
-
     <button  type="submit" class="btn btn-info">Add A Brand </button>
   </form>
+
+
+  <form class="container form-group button" action="/brands" method="post" name="projects">
+  <input type="hidden" name="_method" value="patch">
+  <select id="brands_update" name="brands_update">
+   <%if @brands != []%>
+    <% @brands.each do |brand| %>
+     <option value = "<%= brand.id %>" > <%= brand.name%> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no brands yet</option>
+     <% end %>
+   </select>
+
+  <select id="shoes_update" name="shoes_update">
+   <%if @shoes != []%>
+    <% @shoes.each do |shoe| %>
+     <option value = "<%= shoe.id %>" > <%= shoe.name%> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no shoes yet</option>
+     <% end %>
+   </select>
+
+
+  <button type="submit" class="btn btn-info"name="button">Add a shoe to a brand</button>
+</form>
 
 </div>

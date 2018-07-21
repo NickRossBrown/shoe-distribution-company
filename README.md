@@ -76,12 +76,13 @@ $bundle install
 1. database
 ```
 rake db:create
+rake db:migrate
 ```
 1. host app locally
 ```
 $ruby app.rb
 ```
-1. insert localhost with <port number> given in terminal
+1. insert localhost with <port number> given in terminal into a webpage's URL
 ```
 localhost:<port number>      ---example--- localhost:4567
 ```

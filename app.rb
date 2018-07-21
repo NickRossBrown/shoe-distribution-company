@@ -24,13 +24,20 @@ get ("/brands") do
   erb(:brands)
 end
 patch ("/brands") do
+  brand1_id = params.fetch("brands_update").to_i
+  brand1 = Brand.find(brand1_id)
+  shoe1_id = params.fetch("shoes_update").to_i
+
+  # brand1.update({:shoe_ids => [shoe1_id]})
+  brand1.shoes.push(Shoe.find(shoe1_id))
   binding.pry
   @brands=Brand.all
   @shoes=Shoe.all
   erb(:brands)
 end
 get ("/brands/:id") do
-  @brands=Brand.all
+  brand_id = params.fetch("id").to_i
+  @brands=Brand.find(brand_id)
   @shoes=Shoe.all
   erb(:brands)
 end

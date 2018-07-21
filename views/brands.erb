@@ -1,0 +1,25 @@
+<div class="container">
+
+  <h2>Welcome to the brand webpage</h2>
+
+  <%if @brands != []%>
+    <% @brands.each do |brand| %>
+      <p><%=brand.name%>----<%=brand.price%></p>
+        <% end %>
+    <% else %>
+      <h2>no entered brands yet</h2>
+    <% end %>
+
+
+  <form class="container form-group button" action="/brands" method="post">
+    <label for="brandName">Enter a Brand</label>
+    <input type="text" name="brandName" id="brandName">
+
+    <label for="brandPrice">Enter its Price</label>
+    <input type="int" name="brandPrice" id="brandPrice">
+
+
+    <button  type="submit" class="btn btn-info">Add A Brand </button>
+  </form>
+
+</div>

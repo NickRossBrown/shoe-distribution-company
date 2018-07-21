@@ -19,7 +19,15 @@ get ("/stores") do
 end
 
 get ("/brands") do
+  @brands=Brand.all
+  erb(:brands)
+end
 
+post("/brands") do
+  new_brand = params.fetch("brandName")
+  brand_price = params.fetch("brandPrice")
+  Brand.create({:name => new_brand, :price => brand_price})
+  @brands=Brand.all
   erb(:brands)
 end
 

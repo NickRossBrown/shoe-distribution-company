@@ -17,7 +17,20 @@ get ("/stores") do
 
   erb(:stores)
 end
+
 get ("/brands") do
 
   erb(:brands)
+end
+
+get ("/shoes") do
+  @shoes=Shoe.all
+  erb(:shoes)
+end
+
+post("/shoes") do
+  new_shoe = params.fetch("shoeName")
+  Shoe.create({:name => new_shoe})
+  @shoes=Shoe.all
+  erb(:shoes)
 end

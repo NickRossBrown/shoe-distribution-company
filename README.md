@@ -19,6 +19,10 @@ I changed my design to
 
 <img height="300" src="public/design/schema2.png">
 
+I changed my design again, this time to
+
+<img height="300" src="public/design/schema-draft-3.png">
+
 ## Specifications
 * _1 view list of shoes
   - _Example Input: _

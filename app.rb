@@ -30,7 +30,6 @@ patch ("/brands") do
 
   # brand1.update({:shoe_ids => [shoe1_id]})
   brand1.shoes.push(Shoe.find(shoe1_id))
-  binding.pry
   @brands=Brand.all
   @shoes=Shoe.all
   erb(:brands)

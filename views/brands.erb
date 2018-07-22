@@ -5,10 +5,20 @@
   <%if @brands != []%>
     <% @brands.each do |brand| %>
       <p><a href="/brands/<%=brand.id %>"><%=brand.name%>----<%=brand.price%></a></p>
+      <%if brand.shoes != []%>
+       <% brand.shoes.each do |shoe| %>
+        <p> <%= shoe.name%> </p>
         <% end %>
+        <% else %>
+        <option value="" disabled selected>no shoes yet</option>
+      <% end %>
+    <% end %>
     <% else %>
       <h2>no entered brands yet</h2>
     <% end %>
+
+
+
 
 
   <form class="container form-group button" action="/brands" method="post">

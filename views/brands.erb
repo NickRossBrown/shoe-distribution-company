@@ -30,7 +30,22 @@
   </form>
 
 
-  <form class="container form-group button" action="/brands" method="post" name="projects">
+  <form class="container form-group button" action="/brands/delete" method="delete" name="brands">
+   <select id="brands_delete" name="brands_delete">
+     <%if @brands != []%>
+      <% @brands.each do |brand| %>
+       <option value = "<%= brand.id %>" > <%= brand.name%> </option>
+       <% end %>
+       <% else %>
+       <option value="" disabled selected>no brands yet</option>
+       <% end %>
+     </select>
+    </select>
+   <button  type="submit" class="btn btn-info"name="button">Delete A Brand</button>
+ </form>
+
+
+  <form class="container form-group button" action="/brands" method="post" name="brands">
   <input type="hidden" name="_method" value="patch">
   <select id="brands_update" name="brands_update">
    <%if @brands != []%>

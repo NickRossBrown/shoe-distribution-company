@@ -34,6 +34,16 @@ patch ("/brands") do
   @shoes=Shoe.all
   erb(:brands)
 end
+
+get ("/brands/delete") do
+  brand_id = params.fetch("brands_delete").to_i
+  brand = Brand.find(brand_id)
+  brand.delete
+  @brands=Brand.all
+  @shoes=Shoe.all
+
+  erb(:brands)
+end
 get ("/brands/:id") do
   brand_id = params.fetch("id").to_i
   @brands=Brand.find(brand_id)

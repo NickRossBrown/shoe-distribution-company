@@ -41,9 +41,29 @@ get ("/brands/delete") do
   brand.delete
   @brands=Brand.all
   @shoes=Shoe.all
-
   erb(:brands)
 end
+
+get ("/brands/update") do
+  brand_id = params.fetch("brand_update").to_i
+  brand = Brand.find(brand_id)
+  brand_price=brand.price
+  brand_name = brand.name
+  if (params.fetch("rename_brand") != "")
+    brand_name = params.fetch("rename_brand")
+  end
+  if (params.fetch("reprice_brand") != "")
+    brand_price = params.fetch("reprice_brand")
+  end
+
+  brand.update(:name => brand_name, :price => brand_price)
+  @brands=Brand.all
+  @shoes=Shoe.all
+  erb(:brands)
+end
+
+
+
 get ("/brands/:id") do
   brand_id = params.fetch("id").to_i
   @brands=Brand.find(brand_id)

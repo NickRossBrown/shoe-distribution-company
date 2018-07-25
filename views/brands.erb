@@ -19,8 +19,6 @@
 
 
 
-
-
   <form class="container form-group button" action="/brands" method="post">
     <label for="brandName">Enter a Brand</label>
     <input type="text" name="brandName" id="brandName">
@@ -43,6 +41,26 @@
     </select>
    <button  type="submit" class="btn btn-info"name="button">Delete A Brand</button>
  </form>
+
+ <form class="container form-group button" action="/brands/update" method="update" name="brand_update">
+  <select id="brand_update" name="brand_update">
+   <%if @brands != []%>
+    <% @brands.each do |brand| %>
+     <option value = "<%= brand.id %>" > <%= brand.name %> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no brands yet</option>
+     <% end %>
+   </select>
+
+   <label id="rename_brand" name="rename_brand" type = "text">Rename Brand Title</label>
+   <input type="text" name="rename_brand">
+
+   <label id="reprice_brand" name="reprice_brand" type = "text">Update Brand Price</label>
+   <input type="text" name="reprice_brand">
+
+  <button type="submit" class="btn btn-info"name="button">Update Brand</button>
+</form>
 
 
   <form class="container form-group button" action="/brands" method="post" name="brands">

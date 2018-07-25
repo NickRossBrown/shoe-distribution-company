@@ -18,6 +18,7 @@ get ("/brands") do
   @shoes=Shoe.all
   erb(:brands)
 end
+
 patch ("/brands") do
   brand1_id = params.fetch("brands_update").to_i
   brand1 = Brand.find(brand1_id)
@@ -90,6 +91,7 @@ end
 
 get ("/stores") do
   @stores=Store.all
+  @brands=Brand.all
   erb(:stores)
 end
 
@@ -97,6 +99,7 @@ post("/stores") do
   new_store = params.fetch("storeName")
   Store.create({:name => new_store })
   @stores=Store.all
+  @brands=Brand.all
   erb(:stores)
 end
 
@@ -106,6 +109,7 @@ get ("/stores/delete") do
   store = Store.find(store_id)
   store.delete
   @stores=Store.all
+  @brands=Brand.all
   erb(:stores)
 end
 
@@ -118,6 +122,22 @@ get ("/stores/update") do
   end
   store.update(:name => store_name)
   @stores=Store.all
+  @brands=Brand.all
   erb(:stores)
+end
 
+patch ("/stores/assign-brand") do
+  brand1_id = params.fetch("brands_assign_id").to_i
+  brand1 = Brand.find(brand1_id)
+  store1_id = params.fetch("store_id").to_i
+  store1 = Store.find(store1_id)
+  binding.pry
+
+  # brand.update({:store_ids => [store1_id]})
+  brand1.stores.push(store1)
+  @stores=Store.all
+  @brands=Brand.all
+  @shoes=Shoe.all
+  @inventories=Inventory.all
+  erb(:stores)
 end

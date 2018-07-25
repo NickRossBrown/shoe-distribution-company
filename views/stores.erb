@@ -4,7 +4,18 @@
 
   <%if @stores != []%>
     <% @stores.each do |store| %>
-      <p><%=store.name%></p>
+    <hr />
+    <hr />
+      <h2><%=store.name%></h2>
+      <%if store.brands != []%>
+       <% store.brands.each do |brand| %>
+        <p> <%= brand.name%> </p>
+        <% end %>
+        <% else %>
+        <option value="" disabled selected>no brands yet</option>
+      <% end %>
+
+
         <% end %>
     <% else %>
       <h2>no entered stores yet</h2>
@@ -49,6 +60,37 @@
    </select>
   <button  type="submit" class="btn btn-info"name="button">Delete A store</button>
 </form>
+
+
+<hr />
+<hr />
+<hr />
+<form class="container form-group button" action="/stores/assign-brand" method="post" name="store_brand">
+<input type="hidden" name="_method" value="patch">
+<select id="brands_assign_id" name="brands_assign_id">
+ <%if @brands != []%>
+  <% @brands.each do |brand| %>
+   <option value = "<%= brand.id %>" > <%= brand.name%> </option>
+   <% end %>
+   <% else %>
+   <option value="" disabled selected>no brands yet</option>
+   <% end %>
+ </select>
+
+<select id="store_id" name="store_id">
+ <%if @stores != []%>
+  <% @stores.each do |store| %>
+   <option value = "<%= store.id %>" > <%= store.name%> </option>
+   <% end %>
+   <% else %>
+   <option value="" disabled selected>no stores yet</option>
+   <% end %>
+ </select>
+
+
+<button type="submit" class="btn btn-info"name="button">Add a shoe to a brand</button>
+</form>
+
 
 
 

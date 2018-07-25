@@ -2,8 +2,17 @@
 
   <h2>Welcome to the stores webpage</h2>
 
+  <%if @stores != []%>
+    <% @stores.each do |store| %>
+      <p><%=store.name%></p>
+        <% end %>
+    <% else %>
+      <h2>no entered stores yet</h2>
+    <% end %>
 
-  <form class="container form-group button" action="" method="" name="">
+
+
+  <form class="container form-group button" action="/stores" method="post" name="store_name">
     <label for="storeName">Enter a Store</label>
     <input type="text" name="storeName" id="storeName">
     <button  type="submit" class="btn btn-info">Add A Store </button>
@@ -20,8 +29,8 @@
      <% end %>
    </select>
 
-   <label id="renameStore" name="renameStore" type = "text">Rename store</label>
-   <input type="text" name="renameStore">
+   <label id="rename_store" name="rename_store" type = "text">Rename store</label>
+   <input type="text" name="rename_store">
 
   <button type="submit" class="btn btn-info"name="button">Update A store</button>
 </form>

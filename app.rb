@@ -13,11 +13,6 @@ post ("/") do
   erb(:index)
 end
 
-get ("/stores") do
-  @stores = []
-  erb(:stores)
-end
-
 get ("/brands") do
   @brands=Brand.all
   @shoes=Shoe.all
@@ -90,4 +85,39 @@ post("/shoes") do
   Shoe.create({:name => new_shoe})
   @shoes=Shoe.all
   erb(:shoes)
+end
+
+
+get ("/stores") do
+  @stores=Store.all
+  erb(:stores)
+end
+
+post("/stores") do
+  new_store = params.fetch("storeName")
+  Store.create({:name => new_store })
+  @stores=Store.all
+  erb(:stores)
+end
+
+
+get ("/stores/delete") do
+  store_id = params.fetch("store_delete").to_i
+  store = Store.find(store_id)
+  store.delete
+  @stores=Store.all
+  erb(:stores)
+end
+
+get ("/stores/update") do
+  store_id = params.fetch("store_update").to_i
+  store = Store.find(store_id)
+  store_name = store.name
+  if (params.fetch("rename_store") != "")
+    store_name = params.fetch("rename_store")
+  end
+  store.update(:name => store_name)
+  @stores=Store.all
+  erb(:stores)
+
 end

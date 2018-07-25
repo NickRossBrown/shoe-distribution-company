@@ -31,4 +31,5 @@ describe(Brand) do
   expect(Brand.all.last.name).to(eq("Nike"))
  end
 
+
 end

@@ -4,7 +4,7 @@
 
   <%if @brands != []%>
     <% @brands.each do |brand| %>
-      <p><a href="/brands/<%=brand.id %>"><%=brand.name%>----<%=brand.price%></a></p>
+      <p><a href="/brands/<%=brand.id %>"><%=brand.name%>----<%=brand.price.to_f / 100 %></a></p>
       <%if brand.shoes != []%>
        <% brand.shoes.each do |shoe| %>
         <p> <%= shoe.name%> </p>

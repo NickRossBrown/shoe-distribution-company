@@ -6,10 +6,10 @@
     <% @stores.each do |store| %>
     <hr />
     <hr />
-      <h2><%=store.name%></h2>
+      <h2><a href="/stores/<%=store.id %>"><%=store.name%></a></h2>
       <%if store.brands != []%>
        <% store.brands.each do |brand| %>
-        <p> $ <%= brand.price%>.00 &nbsp; --- &nbsp; <%= brand.name%></p>
+        <p> $ <%= brand.price.to_f / 100%> &nbsp; --- &nbsp; <%= brand.name%></p>
         <% end %>
         <% else %>
         <option value="" disabled selected>no brands yet</option>

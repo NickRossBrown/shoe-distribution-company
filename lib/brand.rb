@@ -6,6 +6,7 @@ class Brand < ActiveRecord::Base
   before_validation :capitalize_first_letter
 
 
+private
 
   def capitalize_first_letter
     self.name= name.capitalize

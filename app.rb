@@ -50,6 +50,7 @@ get ("/brands/update") do
   end
   if (params.fetch("reprice_brand") != "")
     brand_price = params.fetch("reprice_brand")
+    brand_price= brand_price.to_f*100
   end
 
   brand.update(:name => brand_name, :price => brand_price)
@@ -68,6 +69,7 @@ get ("/brands/:id") do
 end
 
 post("/brands") do
+  binding.pry
   new_brand = params.fetch("brandName")
   brand_price = params.fetch("brandPrice")
   Brand.create({:name => new_brand, :price => brand_price})
@@ -103,6 +105,17 @@ post("/stores") do
   erb(:stores)
 end
 
+get ("/stores/:id") do
+
+  store_id = params.fetch("id")
+  @store=Store.find(store_id)
+  binding.pry
+  @brands=Brand.find(store_id)
+  @stores=Store.all
+  @shoes=Shoe.all
+  erb(:store)
+end
+
 
 get ("/stores/delete") do
   store_id = params.fetch("store_delete").to_i
@@ -110,7 +123,7 @@ get ("/stores/delete") do
   store.delete
   @stores=Store.all
   @brands=Brand.all
-  erb(:stores)
+  redirect(:stores)
 end
 
 get ("/stores/update") do
@@ -123,7 +136,7 @@ get ("/stores/update") do
   store.update(:name => store_name)
   @stores=Store.all
   @brands=Brand.all
-  erb(:stores)
+  redirect(:stores)
 end
 
 patch ("/stores/assign-brand") do
@@ -131,7 +144,6 @@ patch ("/stores/assign-brand") do
   brand1 = Brand.find(brand1_id)
   store1_id = params.fetch("store_id").to_i
   store1 = Store.find(store1_id)
-  binding.pry
 
   # brand.update({:store_ids => [store1_id]})
   brand1.stores.push(store1)
@@ -139,5 +151,5 @@ patch ("/stores/assign-brand") do
   @brands=Brand.all
   @shoes=Shoe.all
   @inventories=Inventory.all
-  erb(:stores)
+  redirect(:stores)
 end

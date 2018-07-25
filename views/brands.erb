@@ -4,7 +4,9 @@
 
   <%if @brands != []%>
     <% @brands.each do |brand| %>
-      <p><a href="/brands/<%=brand.id %>"><%=brand.name%>----<%=brand.price.to_f / 100 %></a></p>
+    <hr />
+      <h3>Brand Name:<%=brand.name%></h3>
+      <h4>Price: $<%=brand.price.to_f / 100 %></h4>
       <%if brand.shoes != []%>
        <% brand.shoes.each do |shoe| %>
         <p> <%= shoe.name%> </p>
@@ -16,9 +18,9 @@
     <% else %>
       <h2>no entered brands yet</h2>
     <% end %>
-
-
-
+<hr />
+<hr />
+<hr />
   <form class="container form-group button" action="/brands" method="post">
     <label for="brandName">Enter a Brand</label>
     <input type="text" name="brandName" id="brandName">
@@ -26,8 +28,8 @@
     <input type="int" name="brandPrice" id="brandPrice">
     <button  type="submit" class="btn btn-info">Add A Brand </button>
   </form>
-
-
+<hr />
+<hr />
   <form class="container form-group button" action="/brands/delete" method="delete" name="brands">
    <select id="brands_delete" name="brands_delete">
      <%if @brands != []%>
@@ -41,7 +43,8 @@
     </select>
    <button  type="submit" class="btn btn-info"name="button">Delete A Brand</button>
  </form>
-
+<hr />
+<hr />
  <form class="container form-group button" action="/brands/update" method="update" name="brand_update">
   <select id="brand_update" name="brand_update">
    <%if @brands != []%>
@@ -60,9 +63,9 @@
    <input type="text" name="reprice_brand">
 
   <button type="submit" class="btn btn-info"name="button">Update Brand</button>
-</form>
-
-
+ </form>
+<hr />
+<hr />
   <form class="container form-group button" action="/brands" method="post" name="brands">
   <input type="hidden" name="_method" value="patch">
   <select id="brands_update" name="brands_update">
@@ -88,5 +91,7 @@
 
   <button type="submit" class="btn btn-info"name="button">Add a shoe to a brand</button>
 </form>
+<hr />
+<hr />
 
 </div>

@@ -4,15 +4,13 @@
 <br>
 <br>
 
-<h1></h1>
-
 <%if @store.brands != []%>
  <% @store.brands.each do |brand| %>
-  <h3> Brand Name: <%= brand.name%> &nbsp; --- &nbsp;Brand Price: $<%= brand.price.to_f / 100%>
-  </h3>
+  <h3> Brand Name: <%= brand.name%> </h3>
+  <h4>Price: $<%= brand.price.to_f / 100%> </h4>
   <%if brand.shoes != []%>
    <% brand.shoes.each do |shoe| %>
-    <p> Shoe Name: <%= shoe.name%> </p>
+    <p> Shoe: <%= shoe.name%> </p>
     <% end %>
     <% else %>
     <option value="" disabled selected>no shoes yet</option>
@@ -21,7 +19,5 @@
 <% else %>
   <option value="" disabled selected>no brands yet</option>
 <% end %>
-<h2>Here is the store  brands, shoe stores!</h2>
-
 
 </div>

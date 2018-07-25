@@ -1,33 +1,33 @@
 <div class="container">
-
   <h2>Welcome to the stores webpage</h2>
 
   <%if @stores != []%>
     <% @stores.each do |store| %>
     <hr />
-    <hr />
       <h2><a href="/stores/<%=store.id %>"><%=store.name%></a></h2>
       <%if store.brands != []%>
        <% store.brands.each do |brand| %>
-        <p> $ <%= brand.price.to_f / 100%> &nbsp; --- &nbsp; <%= brand.name%></p>
+        <p>Price: $ <%= brand.price.to_f / 100%> &nbsp; --- &nbsp; Brand Name: <%= brand.name%></p>
         <% end %>
         <% else %>
         <option value="" disabled selected>no brands yet</option>
-      <% end %>
-
-
+        <% end %>
         <% end %>
     <% else %>
       <h2>no entered stores yet</h2>
     <% end %>
 
-
+    <hr />
+    <hr />
 
   <form class="container form-group button" action="/stores" method="post" name="store_name">
     <label for="storeName">Enter a Store</label>
     <input type="text" name="storeName" id="storeName">
-    <button  type="submit" class="btn btn-info">Add A Store </button>
+    <button  type="submit" class="btn btn-info">Add A Store</button>
   </form>
+
+  <hr />
+  <hr />
 
   <form class="container form-group button" action="/stores/update" method="update" name="store">
   <select id="store_update" name="store_update">
@@ -39,60 +39,54 @@
      <option value="" disabled selected>no store yet</option>
      <% end %>
    </select>
-
    <label id="rename_store" name="rename_store" type = "text">Rename store</label>
    <input type="text" name="rename_store">
-
   <button type="submit" class="btn btn-info"name="button">Update A store</button>
-</form>
-<br>
-<br>
+  </form>
 
-<form class="container form-group button" action="/stores/delete" method="delete" name="store">
-  <select id="store_delete" name="store_delete">
-   <%if @store != []%>
-    <% @stores.each do |store| %>
-     <option value = "<%= store.id %>" > <%= store.name %> </option>
+  <hr />
+  <hr />
+
+  <form class="container form-group button" action="/stores/delete" method="delete" name="store">
+    <select id="store_delete" name="store_delete">
+     <%if @store != []%>
+      <% @stores.each do |store| %>
+       <option value = "<%= store.id %>" > <%= store.name %> </option>
+       <% end %>
+       <% else %>
+       <option value="" disabled selected>no stores entered  yet</option>
+       <% end %>
+     </select>
+    <button  type="submit" class="btn btn-info"name="button">Delete A store</button>
+  </form>
+
+  <hr />
+  <hr />
+
+  <form class="container form-group button" action="/stores/assign-brand" method="post" name="store_brand">
+  <input type="hidden" name="_method" value="patch">
+  <select id="brands_assign_id" name="brands_assign_id">
+   <%if @brands != []%>
+    <% @brands.each do |brand| %>
+     <option value = "<%= brand.id %>" > <%= brand.name%> </option>
      <% end %>
      <% else %>
-     <option value="" disabled selected>no stores entered  yet</option>
+     <option value="" disabled selected>no brands yet</option>
      <% end %>
    </select>
-  <button  type="submit" class="btn btn-info"name="button">Delete A store</button>
-</form>
+  <select id="store_id" name="store_id">
+   <%if @stores != []%>
+    <% @stores.each do |store| %>
+     <option value = "<%= store.id %>" > <%= store.name%> </option>
+     <% end %>
+     <% else %>
+     <option value="" disabled selected>no stores yet</option>
+     <% end %>
+   </select>
+  <button type="submit" class="btn btn-info"name="button">Add a shoe to a brand</button>
+  </form>
 
-
-<hr />
-<hr />
-<hr />
-<form class="container form-group button" action="/stores/assign-brand" method="post" name="store_brand">
-<input type="hidden" name="_method" value="patch">
-<select id="brands_assign_id" name="brands_assign_id">
- <%if @brands != []%>
-  <% @brands.each do |brand| %>
-   <option value = "<%= brand.id %>" > <%= brand.name%> </option>
-   <% end %>
-   <% else %>
-   <option value="" disabled selected>no brands yet</option>
-   <% end %>
- </select>
-
-<select id="store_id" name="store_id">
- <%if @stores != []%>
-  <% @stores.each do |store| %>
-   <option value = "<%= store.id %>" > <%= store.name%> </option>
-   <% end %>
-   <% else %>
-   <option value="" disabled selected>no stores yet</option>
-   <% end %>
- </select>
-
-
-<button type="submit" class="btn btn-info"name="button">Add a shoe to a brand</button>
-</form>
-
-
-
-
+  <hr />
+  <hr />
 
 </div>

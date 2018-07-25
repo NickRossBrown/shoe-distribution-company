@@ -9,7 +9,7 @@
       <h2><%=store.name%></h2>
       <%if store.brands != []%>
        <% store.brands.each do |brand| %>
-        <p> <%= brand.name%> </p>
+        <p> $ <%= brand.price%>.00 &nbsp; --- &nbsp; <%= brand.name%></p>
         <% end %>
         <% else %>
         <option value="" disabled selected>no brands yet</option>

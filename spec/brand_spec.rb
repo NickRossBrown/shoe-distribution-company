@@ -8,7 +8,6 @@ describe(Brand) do
     end
   end
 
-
   it("validates presence of the brand name") do
     brand= Brand.new({:name => ""})
     expect(brand.save()).to(eq(false))
@@ -16,7 +15,20 @@ describe(Brand) do
 
 
   it("ensures the length of name is at most 50 characters") do
-  brand= Brand.new({:name => "a".*(51)})
-  expect(brand.save()).to(eq(false))
-end
+    brand= Brand.new({:name => "a".*(101)})
+    expect(brand.save()).to(eq(false))
+  end
+
+ it('will check for any duplicate brand names so that each branch name is unqiue') do
+   Brand.delete_all
+   brand = Brand.create({:name => "epicodus", :price => 21})
+   brand1 = Brand.create({:name => "epicodus"})
+   expect(Brand.all).to(eq([brand]))
+ end
+
+ it('will capitalize the first letter of brand name') do
+  brand = Brand.create({:name => "nike"})
+  expect(Brand.all.last.name).to(eq("Nike"))
+ end
+
 end
